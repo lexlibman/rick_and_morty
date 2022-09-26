@@ -1,3 +1,4 @@
+import 'package:rick_and_morty/feature/data/models/location_model.dart';
 import 'package:rick_and_morty/feature/domain/entities/person_entity.dart';
 
 class PersonModel extends PersonEntity {
@@ -35,8 +36,12 @@ class PersonModel extends PersonEntity {
       species: json['species'],
       type: json['type'],
       gender: json['gender'],
-      origin: json['origin']['name'],
-      location: json['location']['name'],
+      origin: json['origin'] != null
+          ? LocationModel.fromJson(json['oringin'])
+          : null,
+      location: json['location'] != null
+          ? LocationModel.fromJson(json['location'])
+          : null,
       image: json['image'],
       episode:
           (json['episode'] as List<dynamic>).map((e) => e as String).toList(),
